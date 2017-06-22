@@ -24,7 +24,7 @@ J'utilise la logique d'encapsulation afin de rendre abtrait toutes les fonction 
 Q3)
 Je réalise de l'abastraction en transformant des opérateur en dure tel que '+' etc... en methode que je définie moi même.
 Q4)
-
+Le trainer est trop limité, car les questions son ecrit en dure dans le code et les reponse afficher dans la console.
 Q5)
 
 Q6)
