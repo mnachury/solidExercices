@@ -18,7 +18,7 @@ Réponses aux questions posées
 -----------------------------
 
 Q1)
-
+J'ai utiliser un dictionaire de fonction, en invocant la fonction que je cherche directement grace à la clée (+,-,*,/)
 Q2)
 
 Q3)
