@@ -33,30 +33,44 @@ namespace SolidExercices
                 {
                     tmpNb = double.Parse(strNb);
                     strNb = "";
-        
-                        switch (lastOp)
-                        {
-                            case '+':
-                                resultat += tmpNb;
-                                break;
-                            case '-':
-                                resultat -= tmpNb;
-                                break;
-                            case '*':
-                                resultat *= tmpNb;
-                                break;
-                            case '/':
+                    switch (lastOp)
+                    {
+                        case '+':
+                            resultat += tmpNb;
+                            break;
+                        case '-':
+                            resultat -= tmpNb;
+                            break;
+                        case '*':
+                            resultat *= tmpNb;
+                            break;
+                        case '/':
+                            if (tmpNb == 0)
+                            {
+                                throw new DivideByZeroException("Impossible de diviser par zero : (" + resultat.ToString() + lastOp + tmpNb.ToString() + ")" );
+                            }
+                            else
+                            {
                                 resultat /= tmpNb;
-                                break;
-                            case ' ':
-                                resultat = tmpNb;
-                                break;
+                            }
+                            break;
+                        case ' ':
+                            resultat = tmpNb;
+                            break;
+                        default:
+                            throw new stringMalFormerException("Erreur sur la string operation au niveau du caractères: '" + lastOp + "'");
+                            break;
                     }
-                lastOp = car;
+                    lastOp = car;
                 }
             }
 
             return resultat;
+        }
+
+        public class stringMalFormerException : System.Exception
+        {
+            public stringMalFormerException(string message) : base(message) { }
         }
     }
 }
