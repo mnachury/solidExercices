@@ -29,6 +29,23 @@ namespace SolidExercices.Tests
             var result = calculator.Calculate("1.3+2+7");
             Check.That(result).IsEqualTo(10.3);
         }
+
+        [Test]
+        public void CalcPlusieurCalcul()
+        {
+            var calculator = new Calculator();
+            var result = calculator.Calculate("1.3+2+5");
+            Check.That(result).IsEqualTo(8.3);
+            result = calculator.Calculate("12/20");
+            Check.That(result).IsEqualTo(0.6);
+            Calculator.stringMalFormerException ex1 = Assert.Throws<Calculator.stringMalFormerException>(lanceExceptionMalFormer);
+            Assert.AreEqual("Erreur sur la string operation au niveau du caractères: 'a'", ex1.Message);
+            DivideByZeroException ex2 = Assert.Throws<DivideByZeroException>(lanceExceptionZero);
+            Assert.AreEqual("Impossible de diviser par zero : (154,5/0)", ex2.Message);
+            result = calculator.Calculate("6.6/3");
+            Check.That(Math.Round(result, 1)).IsEqualTo(2.2);
+
+        }
         [Test]
         public void CalculateComplexeCalcul()
         {
@@ -40,8 +57,8 @@ namespace SolidExercices.Tests
         public void CalculateAnotherComplexeCalcul()
         {
             var calculator = new Calculator();
-            var result = calculator.Calculate("100+56.3-1.8/25");
-            Check.That(result).IsEqualTo(6.18);
+            var result = calculator.Calculate("100+56.3-1.8x25");
+            Check.That(result).IsEqualTo(3862.5);
         }
 
         public void lanceExceptionZero()
@@ -54,7 +71,7 @@ namespace SolidExercices.Tests
         public void testExceptionZero()
         {
             DivideByZeroException ex = Assert.Throws<DivideByZeroException>(lanceExceptionZero);
-            Assert.AreEqual("Impossible de diviser par zero : (154,5/0)",ex.Message);
+            Assert.AreEqual("Impossible de diviser par zero : (154,5/0)", ex.Message);
         }
 
         public void lanceExceptionMalFormer()

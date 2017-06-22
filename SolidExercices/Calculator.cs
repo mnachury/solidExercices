@@ -9,7 +9,7 @@ namespace SolidExercices
 {
     public class Calculator
     {
-        public double resultat = 0;
+        public double resultat;
         private double tmpNb;
 
         private double sum()
@@ -42,6 +42,9 @@ namespace SolidExercices
             methods['-'] = sub;
             methods['x'] = mul;
             methods['/'] = div;
+
+            resultat = 0;
+            tmpNb = 0;
 
             string strNb = "";
             char lastOp = ' ';
