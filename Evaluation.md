@@ -26,6 +26,6 @@ Je réalise de l'abastraction en transformant des opérateur en dure tel que '+' e
 Q4)
 Le trainer est trop limité, car les questions son ecrit en dure dans le code et les reponse afficher dans la console.
 Q5)
-
+Il s'agit d'encapsulation en séparent les fonctions dans des classes on diminue l'impacte déventuelle modification sur le code, limite les nombre et le positionement des bugs.
 Q6)
  
