@@ -40,7 +40,7 @@ namespace SolidExercices
             IDictionary<char, Func<double>> methods = new Dictionary<char, Func<double>>();
             methods['+'] = sum;
             methods['-'] = sub;
-            methods['*'] = mul;
+            methods['x'] = mul;
             methods['/'] = div;
 
             string strNb = "";
