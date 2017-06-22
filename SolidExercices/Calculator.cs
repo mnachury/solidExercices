@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
@@ -8,16 +9,51 @@ namespace SolidExercices
 {
     public class Calculator
     {
+        public double resultat = 0;
+        private double tmpNb;
+
+        private double sum()
+        {
+            return resultat + tmpNb;
+        }
+
+        private double sub()
+        {
+            return resultat - tmpNb;
+        }
+
+        private double mul()
+        {
+            return resultat * tmpNb;
+        }
+
+        private double div()
+        {
+            if (tmpNb == 0)
+            {
+                throw new DivideByZeroException("Impossible de diviser par zero : (" + resultat.ToString() + "/0)");
+            }
+            return resultat / tmpNb;
+        }
         public double Calculate(string operation)
         {
+            IDictionary<char, Func<double>> methods = new Dictionary<char, Func<double>>();
+            methods['+'] = sum;
+            methods['-'] = sub;
+            methods['*'] = mul;
+            methods['/'] = div;
 
-            double resultat = 0;
-            double tmpNb;
             string strNb = "";
             char lastOp = ' ';
+            if (operation.StartsWith("-"))
+            {
+                operation = "0" + operation.Replace(" ", "") + ";"; 
+            }
+            else
+            {
+                operation = "0+" + operation.Replace(" ", "") + ";";
+            }
 
-            operation = operation.Replace(" ", "");
-            operation += ";";
 
             foreach (char car in operation)
             {
@@ -33,33 +69,16 @@ namespace SolidExercices
                 {
                     tmpNb = double.Parse(strNb);
                     strNb = "";
-                    switch (lastOp)
+                    if (methods.ContainsKey(lastOp))
                     {
-                        case '+':
-                            resultat += tmpNb;
-                            break;
-                        case '-':
-                            resultat -= tmpNb;
-                            break;
-                        case '*':
-                            resultat *= tmpNb;
-                            break;
-                        case '/':
-                            if (tmpNb == 0)
-                            {
-                                throw new DivideByZeroException("Impossible de diviser par zero : (" + resultat.ToString() + lastOp + tmpNb.ToString() + ")" );
-                            }
-                            else
-                            {
-                                resultat /= tmpNb;
-                            }
-                            break;
-                        case ' ':
-                            resultat = tmpNb;
-                            break;
-                        default:
+                        resultat = methods[lastOp].Invoke();
+                    }
+                    else
+                    {
+                        if (lastOp != ' ')
+                        {
                             throw new stringMalFormerException("Erreur sur la string operation au niveau du caractères: '" + lastOp + "'");
-                            break;
+                        }
                     }
                     lastOp = car;
                 }

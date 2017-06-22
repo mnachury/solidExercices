@@ -16,6 +16,13 @@ namespace SolidExercices.Tests
             Check.That(result).IsEqualTo(3.3);
         }
         [Test]
+        public void CalculateASumFromNeg()
+        {
+            var calculator = new Calculator();
+            var result = calculator.Calculate("-5+2.5");
+            Check.That(result).IsEqualTo(-2.5);
+        }
+        [Test]
         public void CalculateAnotherSum()
         {
             var calculator = new Calculator();
