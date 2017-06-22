@@ -22,7 +22,7 @@ J'ai utiliser un dictionaire de fonction, en invocant la fonction que je cherche
 Q2)
 J'utilise la logique d'encapsulation afin de rendre abtrait toutes les fonction que ma calculatrice pourait employer (et donc rajouter de la faciliter quant à l'ajout de nouvelle fonctionalités)
 Q3)
-
+Je réalise de l'abastraction en transformant des opérateur en dure tel que '+' etc... en methode que je définie moi même.
 Q4)
 
 Q5)
